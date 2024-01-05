@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Backend
+name: Googly Eyes CI Tests
 
 on:
   push:
@@ -23,6 +23,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.9.16"
+        
     - name: Install dependencies
       run: |
         sudo apt-get update -y
@@ -31,17 +32,12 @@ jobs:
         export PATH="$HOME/.local/bin:${PATH}"
         poetry install
 
-    - name: Copy files
-      run: |
-        cp ./pyproject_backend.toml $HOME/pyproject.toml
-        cp ./poetry.lock $HOME/poetry.lock
-        cp -r ./assets/filters $HOME/assets/filters
-        cp -r ./assets/misc $HOME/assets/misc
-        cp -r ./config $HOME/config
-        cp -r ./googly_eyes/backend $HOME/googly_eyes/backend
-        cp -r ./tests/backend $HOME/tests/backend
-
-    - name: Run unit tests
+    - name: Run backend unit tests
       run: |
         cd $HOME
         poetry run python -m unittest discover tests/backend
+        
+    - name: Run frontend unit tests
+      run: |
+        cd $HOME
+        poetry run python -m unittest discover tests/frontend
