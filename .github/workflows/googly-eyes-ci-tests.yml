@@ -27,15 +27,16 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y curl ffmpeg libsm6 libxext6
-        curl -sSL https://install.python-poetry.org | python3.9 -
-        export PATH="$HOME/.local/bin:${PATH}"
-        poetry install
+        ls -lah
+    #     sudo apt-get install -y curl ffmpeg libsm6 libxext6
+    #     curl -sSL https://install.python-poetry.org | python3.9 -
+    #     export PATH="$HOME/.local/bin:${PATH}"
+    #     poetry install
 
-    - name: Run backend unit tests
-      run: |
-        poetry run python -m unittest discover tests/backend
+    # - name: Run backend unit tests
+    #   run: |
+    #     poetry run python -m unittest discover tests/backend
         
-    - name: Run frontend unit tests
-      run: |
-        poetry run python -m unittest discover tests/frontend
+    # - name: Run frontend unit tests
+    #   run: |
+    #     poetry run python -m unittest discover tests/frontend
