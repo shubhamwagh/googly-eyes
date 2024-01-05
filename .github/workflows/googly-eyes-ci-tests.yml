@@ -34,10 +34,8 @@ jobs:
 
     - name: Run backend unit tests
       run: |
-        cd $HOME
         poetry run python -m unittest discover tests/backend
         
     - name: Run frontend unit tests
       run: |
-        cd $HOME
         poetry run python -m unittest discover tests/frontend
