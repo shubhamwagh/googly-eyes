@@ -25,7 +25,8 @@ jobs:
         python-version: "3.9.16"
     - name: Install dependencies
       run: |
-        apt-get install -y curl ffmpeg libsm6 libxext6
+        sudo apt-get update -y
+        sudo apt-get install -y curl ffmpeg libsm6 libxext6
         curl -sSL https://install.python-poetry.org | python3.9 -
         export PATH="$HOME/.local/bin:${PATH}"
         poetry install
