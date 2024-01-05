@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "googly-eyes"
+version = "0.1.0"
+description = "Googly Eyes: Makes faces funnier!"
+authors = ["Shubham Wagh <shubhamwagh48@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.9.7 || >3.9.7,<3.12"
+streamlit = "^1.29.0"
+watchdog = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

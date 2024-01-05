@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "googly-eyes"
+version = "0.1.0"
+description = "Googly Eyes: Makes faces funnier!"
+authors = ["Shubham Wagh <shubhamwagh48@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.9.7 || >3.9.7,<3.12"
+opencv-python = "^4.8.1.78"
+uvicorn = {extras = ["standard"], version = "^0.25.0"}
+tensorflow = "2.12.0"
+fastapi = "^0.108.0"
+python-multipart = "^0.0.6"
+httpx = "^0.26.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

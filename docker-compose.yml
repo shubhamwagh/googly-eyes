@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: googly_eyes/backend/Dockerfile
+    ports:
+      - "${PORT:-8000}:8000" # map container's port 8000 to port default 8000 on the host
+    environment: # run time variables
+      - PORT=${PORT:-8000}
+      - HOST=${HOST:-0.0.0.0}
+
+  frontend:
+    build:
+      context: .
+      dockerfile: googly_eyes/frontend/Dockerfile
+    ports:
+      - "${PORT:-8501}:8501" # map container's port 8501 to port default 8501 on the host
+    environment:
+      - PORT=${PORT:-8501}
+      - HOST=${HOST:-0.0.0.0}
+      - URL_BACKEND=${URL_BACKEND:-http://backend:8000/}
+    depends_on:
+      - backend
+    healthcheck:
+      test: [ "CMD", "curl", "-v", "-f", "http://backend:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
