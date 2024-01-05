@@ -1,0 +1,8 @@
+face_detection_settings:
+  score_threshold: 0.7
+  iou_threshold: 0.3
+googly_eye_settings:
+  path: "assets/filters/googly_eye.png"
+  size_multiplier: 2.0
+  size_inc_percent: 0.4
+  centre_offset_percent: 0.3
