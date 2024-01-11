@@ -3,18 +3,13 @@ import numpy as np
 import mimetypes
 import base64
 from fastapi import FastAPI, UploadFile, HTTPException
-from typing import Dict, Any
+from typing import Dict
 
 from googly_eyes.backend.lib.GooglyEyes import GooglifyEyes
 from googly_eyes.backend.lib.utils import io_utils
 
 # Create FastAPI instance
 app = FastAPI()
-params = {'path': 'assets/filters/googly_eye.png',
-          'size_multiplier': 2.0,
-          'size_percent_inc': 0.4,
-          'centre_offset_percent': 0.3}
-
 params = io_utils.load_config()
 googlify_eyes = GooglifyEyes(params=params)
 
@@ -59,7 +54,7 @@ def health_check() -> Dict[str, str]:
 
 
 @app.post("/googlify")
-def googlify(image: UploadFile) -> Dict[str, Any]:
+async def googlify(image: UploadFile) -> Dict[str, str]:
     """
     Endpoint to apply googly eyes filter to an uploaded image.
 
@@ -81,10 +76,10 @@ def googlify(image: UploadFile) -> Dict[str, Any]:
         }]
         raise HTTPException(status_code=422, detail=error_detail)
 
-    contents = image.file.read()
+    contents = await image.read()
     nparr = np.frombuffer(contents, dtype=np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     out = googlify_eyes.generate(img)
     _, encoded_img = cv2.imencode('.PNG', out)
-    encoded_img = base64.b64encode(encoded_img)
+    encoded_img = base64.b64encode(encoded_img).decode("utf-8")
     return {"result": encoded_img}

@@ -46,5 +46,7 @@ ENV HOST=${HOST:-0.0.0.0}
 EXPOSE $PORT
 
 # Run the server
-CMD poetry run uvicorn googly_eyes.backend.server:app --reload --host $HOST --port $PORT
+CMD poetry run uvicorn googly_eyes.backend.server:app --workers 4 --host $HOST --port $PORT
+# CMD poetry run gunicorn googly_eyes.backend.server:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind $HOST:$PORT
+
 
