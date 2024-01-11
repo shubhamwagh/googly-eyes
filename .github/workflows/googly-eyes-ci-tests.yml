@@ -32,9 +32,18 @@ jobs:
         curl -sSL https://install.python-poetry.org | python3.9 -
         export PATH="$HOME/.local/bin:${PATH}"
         poetry install
+        poetry add coverage
         poetry check
         
     - name: Run backend and frontend unit tests
       run: |
-        poetry run python -m unittest discover tests/backend
-        poetry run python -m unittest discover tests/frontend
+        poetry run coverage run -m unittest discover -s tests --pattern=test_*.py --omit='*/performance/*'
+        poetry run coverage html -i --omit="*/tests/*"
+        poetry coverage report -m -i --omit="*/tests/*"
+        
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v1
+      with:
+        name: "html_coverage_report"
+        path: htmlcov
+
