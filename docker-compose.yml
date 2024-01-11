@@ -3,26 +3,30 @@ services:
     build:
       context: .
       dockerfile: googly_eyes/backend/Dockerfile
+    env_file:
+      - .env
     ports:
-      - "${PORT:-8000}:8000" # map container's port 8000 to port default 8000 on the host
+      - "${EXPOSED_PORT_BACKEND:-8000}:${CONTAINER_PORT_BACKEND:-8000}" # map container's port 8000 to port default 8000 on the host
     environment: # run time variables
-      - PORT=${PORT:-8000}
-      - HOST=${HOST:-0.0.0.0}
+      - PORT=${CONTAINER_PORT_BACKEND:-8000}
+      - HOST=${CONTAINER_HOST_BACKEND:-0.0.0.0}
 
   frontend:
     build:
       context: .
       dockerfile: googly_eyes/frontend/Dockerfile
+    env_file:
+      - .env
     ports:
-      - "${PORT:-8501}:8501" # map container's port 8501 to port default 8501 on the host
+      - "${EXPOSED_PORT_FRONTEND:-8501}:${CONTAINER_PORT_FRONTEND:-8501}" # map container's port 8501 to port default 8501 on the host
     environment:
-      - PORT=${PORT:-8501}
-      - HOST=${HOST:-0.0.0.0}
-      - URL_BACKEND=${URL_BACKEND:-http://backend:8000/}
+      - PORT=${CONTAINER_PORT_FRONTEND:-8501}
+      - HOST=${CONTAINER_HOST_FRONTEND:-0.0.0.0}
+      - URL_BACKEND=${URL_BACKEND:-http://backend:${CONTAINER_PORT_BACKEND:-8000}/}
     depends_on:
       - backend
     healthcheck:
-      test: [ "CMD", "curl", "-v", "-f", "http://backend:8000/health" ]
+      test: [ "CMD", "curl", "-v", "-f", "http://backend:${CONTAINER_PORT_BACKEND:-8000}/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
