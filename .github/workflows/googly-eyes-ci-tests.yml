@@ -33,10 +33,11 @@ jobs:
         export PATH="$HOME/.local/bin:${PATH}"
         poetry install
         poetry add flake8@4.0.1
-        
+
     - name: Check imports
       run: |
-        flake8 googly_eyes --import-order-style=google --isolated
+        poetry run flake8 googly_eyes --import-order-style=google --isolated
+        poetry run python -c "import googly_eyes"
     
     - name: Run backend and frontend unit tests
       run: |
