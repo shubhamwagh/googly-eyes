@@ -20,7 +20,7 @@ def get_backend_url() -> str:
     Retrieves the backend URL from the environment variable or defaults to "http://localhost:8000/googlify".
     """
     url_backend = os.environ.get("URL_BACKEND", "http://localhost:8000/")
-    return url_backend + "googlify"
+    return os.path.join(url_backend, "googlify")
 
 
 def upload_image() -> Optional[st.file_uploader]:
