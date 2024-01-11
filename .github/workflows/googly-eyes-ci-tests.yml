@@ -35,9 +35,9 @@ jobs:
         poetry add coverage
         poetry check
         
-    - name: Run backend and frontend unit tests
+    - name: Run unit tests
       run: |
-        poetry run coverage run -m unittest discover -s tests --pattern=test_*.py
+        poetry run coverage run -m unittest discover -s tests
         poetry run coverage html -i --omit="*/tests/*"
         poetry run coverage report -m -i --omit="*/tests/*"
         
