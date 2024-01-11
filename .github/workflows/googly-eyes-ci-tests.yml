@@ -32,7 +32,12 @@ jobs:
         curl -sSL https://install.python-poetry.org | python3.9 -
         export PATH="$HOME/.local/bin:${PATH}"
         poetry install
-
+        poetry add flake8
+        
+    - name: Check imports
+      run: |
+        flake8 googly_eyes --import-order-style=google --isolated
+    
     - name: Run backend and frontend unit tests
       run: |
         poetry run python -m unittest discover tests/backend
