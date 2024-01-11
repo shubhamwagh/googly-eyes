@@ -34,13 +34,7 @@ jobs:
         poetry install
         poetry check
         
-    - name: Check imports
-      run: |
-        ls -lah
-        poetry run python -c "import googly_eyes"
-    
     - name: Run backend and frontend unit tests
       run: |
         poetry run python -m unittest discover tests/backend
         poetry run python -m unittest discover tests/frontend
-
