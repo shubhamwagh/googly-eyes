@@ -35,4 +35,6 @@ jobs:
 
     - name: Run backend and frontend unit tests
       run: |
-        poetry run python -m unittest -s googly_eyes discover tests
+        poetry run python -m unittest googly_eyes discover tests/backend
+        poetry run python -m unittest googly_eyes discover tests/frontend
+
