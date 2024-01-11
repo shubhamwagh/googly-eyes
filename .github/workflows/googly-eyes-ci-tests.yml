@@ -39,7 +39,7 @@ jobs:
       run: |
         poetry run coverage run -m unittest discover -s tests --pattern=test_*.py --omit='*/performance/*'
         poetry run coverage html -i --omit="*/tests/*"
-        poetry coverage report -m -i --omit="*/tests/*"
+        poetry run coverage report -m -i --omit="*/tests/*"
         
     - name: Upload coverage report
       uses: actions/upload-artifact@v1
