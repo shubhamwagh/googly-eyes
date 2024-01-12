@@ -30,7 +30,7 @@ class AnchorOptions:
     INPUT_SIZE_WIDTH: int = 256
     ANCHOR_OFFSET_X: float = 0.5
     ANCHOR_OFFSET_Y: float = 0.5
-    STRIDES: Tuple[int] = (16, 32, 32, 32)
+    STRIDES: Tuple[int, int, int, int] = (16, 32, 32, 32)
     ASPECT_RATIOS: Tuple[float] = (1.0,)
     REDUCE_BOXES_IN_LOWEST_LAYER: bool = False
     INTERPOLATED_SCALE_ASPECT_RATIO: float = 1.0
