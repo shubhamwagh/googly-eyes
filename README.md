@@ -1,3 +1,6 @@
+[![Unit tests](https://github.com/shubhamwagh/googly-eyes/actions/workflows/googly-eyes-ci-tests.yml/badge.svg)](https://github.com/shubhamwagh/googly-eyes/actions/workflows/googly-eyes-ci-tests.yml)
+
+
 <h1 align="center">
   <br>
   Googly Eyes
@@ -13,6 +16,10 @@
   <a href="#results">Results</a> •
   <a href="#make-it-more-fun">Make It More Fun</a> •
   <a href="#references">References</a> 
+</p>
+
+<p align="center">
+  <img src="./assets/doc_imgs/output.png" height="300">
 </p>
 
 ## Description
