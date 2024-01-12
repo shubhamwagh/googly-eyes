@@ -141,4 +141,4 @@ variables. These variables have specific roles:
 
 ---
 
-author: [Shubham M Wagh](shubhamwagh48@gmail.com)
+author: [Shubham M Wagh](mailto:shubhamwagh48@gmail.com)
